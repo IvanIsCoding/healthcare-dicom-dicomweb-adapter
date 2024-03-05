@@ -10,7 +10,8 @@ apt-get install -y \
     apt-transport-https \
     ca-certificates \
     gnupg-agent \
-    software-properties-common
+    software-properties-common \
+    lsof
 
 
 curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
@@ -24,7 +25,7 @@ apt install -y openjdk-11-jdk
 java -version
 
 # maven
-wget https://downloads.apache.org/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz
+wget https://archive.apache.org/dist/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz
 tar xzvf apache-maven-3.6.3-bin.tar.gz -C /opt
 export PATH=/opt/apache-maven-3.6.3/bin:$PATH
 mvn -v

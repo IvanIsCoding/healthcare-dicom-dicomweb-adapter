@@ -11,4 +11,4 @@ mvn -q exec:java \
  >/workspace/integration_test/tmp.xml
 cd /workspace/integration_test
 perl -pe 's|<DicomAttribute keyword="TransactionUID".*?<\/DicomAttribute>||' tmp.xml >commitment-clean.xml
-diff commitment-clean.xml data/commitment-expected.xml
+diff --strip-trailing-cr commitment-clean.xml data/commitment-expected.xml

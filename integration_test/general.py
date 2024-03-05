@@ -37,7 +37,7 @@ def clone_dcm4che():
 
 # checkout-dcm4che-tag
 def checkout_dcm4che_tag():
-    return runCommand("cd dcm4che && git checkout \"tags/5.15.1\"", "checkout-dcm4che-tag exit with")
+    return runCommand("cd dcm4che && git checkout \"tags/5.31.2\"", "checkout-dcm4che-tag exit with")
 
 # build-tools
 def build_tools():
