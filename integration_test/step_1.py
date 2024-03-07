@@ -38,10 +38,14 @@ verify_result(build_adapter_image(IMAGEPROJECT, SHORT_SHA))
 verify_result(run_import_adapter(substitution.ADAPTER_PORT, substitution.VERSION, substitution.PROJECT, substitution.LOCATION, substitution.DATASET, STORE_NAME, substitution.STORE_SCP_RUN_STEP, substitution.STORE_SCP_PORT, substitution.COMMITMENT_SCU_STEP, substitution.COMMITMENT_SCU_PORT))
 
 # wait-for-adapter
+print("DEBUG: Waiting for Adapter Before")
 verify_result(wait_for_port(substitution.ADAPTER_RUN_STEP, substitution.ADAPTER_PORT))
+print("DEBUG: Waiting for Adapter After")
 
 # wait-for-storescp
+print("DEBUG: Waiting for Store Before")
 verify_result(wait_for_port(substitution.STORE_SCP_RUN_STEP, substitution.STORE_SCP_PORT))
+print("DEBUG: Waiting for Store After")
 
 # run-store-scu
 verify_result(run_store_scu(substitution.ADAPTER_RUN_STEP, substitution.ADAPTER_PORT, "../../../integration_test/data/example.dcm"))
@@ -72,7 +76,7 @@ runCommand("sudo kill -9 $(lsof -t -i:"+substitution.ADAPTER_PORT+")", "Kill pro
 verify_result(check_store_curl(substitution.VERSION, substitution.PROJECT, substitution.LOCATION, substitution.DATASET, STORE_NAME, substitution.REPLACED_UID, "integration_test/downloaded.dcm"))
 
 # check-store-diff
-verify_result(check_diff("integration_test/downloaded.dcm", "integration_test/data/example-redacted-jp2k.dcm"))
+verify_result(check_diff_dcm("integration_test/downloaded.dcm", "integration_test/data/example-redacted-jp2k.dcm"))
 
 # # check-store-curl-destination-2
 verify_result(check_store_curl(substitution.VERSION, substitution.PROJECT, substitution.LOCATION, substitution.DATASET, STORE_NAME+"-destination-2", substitution.REPLACED_UID, "integration_test/downloaded-destination-2.dcm"))
