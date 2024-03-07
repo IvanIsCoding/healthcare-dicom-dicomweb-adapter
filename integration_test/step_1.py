@@ -48,10 +48,10 @@ verify_result(wait_for_port(substitution.STORE_SCP_RUN_STEP, substitution.STORE_
 print("DEBUG: Waiting for Store After")
 
 # run-store-scu
-verify_result(run_store_scu(substitution.ADAPTER_RUN_STEP, substitution.ADAPTER_PORT, "../../../integration_test/data/example.dcm"))
+verify_result(run_store_scu(substitution.ADAPTER_RUN_STEP, substitution.ADAPTER_PORT, "/workspace/integration_test/data/example.dcm"))
 
 # run-store-scu-destination2
-verify_result(run_store_scu(substitution.STORE_SCP_RUN_STEP, substitution.ADAPTER_PORT, "../../../integration_test/data/example-mg.dcm"))
+verify_result(run_store_scu(substitution.STORE_SCP_RUN_STEP, substitution.ADAPTER_PORT, "/workspace/integration_test/data/example-mg.dcm"))
 
 # run-find-scu-instance
 verify_result(run_find_scu_instance(substitution.STORE_SCP_RUN_STEP, substitution.ADAPTER_PORT))
@@ -82,7 +82,7 @@ verify_result(check_diff_dcm("integration_test/downloaded.dcm", "integration_tes
 verify_result(check_store_curl(substitution.VERSION, substitution.PROJECT, substitution.LOCATION, substitution.DATASET, STORE_NAME+"-destination-2", substitution.REPLACED_UID, "integration_test/downloaded-destination-2.dcm"))
 
 # check-store-diff-destination-2
-verify_result(check_diff("integration_test/downloaded-destination-2.dcm", "integration_test/data/example-redacted-mg-jp2k.dcm"))
+verify_result(check_diff_dcm("integration_test/downloaded-destination-2.dcm", "integration_test/data/example-redacted-mg-jp2k.dcm"))
 
 # check-find-diff-instance
 verify_result(check_diff("integration_test/findscu-instance-result1.xml", "integration_test/data/findscu-instance-expected.xml"))
@@ -94,7 +94,7 @@ verify_result(check_diff("integration_test/findscu-series-result1.xml", "integra
 verify_result(check_diff("integration_test/findscu-study-result1.xml", "integration_test/data/findscu-study-expected.xml"))
 
 # check-move-diff
-verify_result(check_diff("integration_test/storescp-data/"+substitution.REPLACED_UID, "integration_test/data/example-redacted-moved-jp2k.dcm"))
+verify_result(check_diff_dcm("integration_test/storescp-data/"+substitution.REPLACED_UID, "integration_test/data/example-redacted-moved-jp2k.dcm"))
 
 # check-commitment-diff
 # #TODO: fix
