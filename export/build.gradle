@@ -56,7 +56,7 @@ dependencies {
     compile 'com.google.guava:guava:31.1-jre'
     compile "com.beust:jcommander:1.72"
     compile 'com.google.auth:google-auth-library-oauth2-http:1.19.0'
-    compile "com.google.api-client:google-api-client:1.30.5"
+    compile "com.google.api-client:google-api-client:2.3.0"
     compile "org.dcm4che:dcm4che-core:5.31.2"
     compile "org.dcm4che:dcm4che-net:5.31.2"
     compile project(":dicom_util")
