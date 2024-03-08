@@ -5,22 +5,10 @@ STORE_NAME = get_random_string(20)
 SHORT_SHA = get_short_sha()
 IMAGEPROJECT = get_imageproject()
 
-# clear data
-clear_data()
-
 verify_result(change_permission())
 
 # install environment
 verify_result(install_environment())
-
-# clone-dcm4che
-verify_result(clone_dcm4che())
-
-# checkout-dcm4che-tag
-verify_result(checkout_dcm4che_tag())
-
-# build-tools
-verify_result(build_tools())
 
 # store-scp
 verify_result(store_scp(substitution.STORE_SCP_RUN_STEP, substitution.STORE_SCP_PORT))
@@ -38,14 +26,10 @@ verify_result(build_adapter_image(IMAGEPROJECT, SHORT_SHA))
 verify_result(run_import_adapter(substitution.ADAPTER_PORT, substitution.VERSION, substitution.PROJECT, substitution.LOCATION, substitution.DATASET, STORE_NAME, substitution.STORE_SCP_RUN_STEP, substitution.STORE_SCP_PORT, substitution.COMMITMENT_SCU_STEP, substitution.COMMITMENT_SCU_PORT))
 
 # wait-for-adapter
-print("DEBUG: Waiting for Adapter Before")
 verify_result(wait_for_port(substitution.ADAPTER_RUN_STEP, substitution.ADAPTER_PORT))
-print("DEBUG: Waiting for Adapter After")
 
 # wait-for-storescp
-print("DEBUG: Waiting for Store Before")
 verify_result(wait_for_port(substitution.STORE_SCP_RUN_STEP, substitution.STORE_SCP_PORT))
-print("DEBUG: Waiting for Store After")
 
 # run-store-scu
 verify_result(run_store_scu(substitution.ADAPTER_RUN_STEP, substitution.ADAPTER_PORT, "/workspace/integration_test/data/example.dcm"))
@@ -97,9 +81,7 @@ verify_result(check_diff("integration_test/findscu-study-result1.xml", "integrat
 verify_result(check_diff_dcm("integration_test/storescp-data/"+substitution.REPLACED_UID, "integration_test/data/example-redacted-moved-jp2k.dcm"))
 
 # check-commitment-diff
-# #TODO: fix
-# verify_result(check_commitment_diff())
-check_commitment_diff()
+verify_result(check_commitment_diff())
 
 # delete-dicom-store
 verify_result(delete_dicom_store(STORE_NAME, substitution.PROJECT, substitution.DATASET, substitution.LOCATION))

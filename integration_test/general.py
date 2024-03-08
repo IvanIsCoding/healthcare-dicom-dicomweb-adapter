@@ -7,7 +7,6 @@ ERROR_CODE = 1
 
 def runCommand(command, message):
     result = subprocess.run(command, shell=True)
-    # print(f"DEBUG: {result.stdout}")
     print(message, result.returncode)
     return result.returncode
 
@@ -25,25 +24,9 @@ def get_short_sha():
 def get_imageproject():
    return os.environ.get("IMAGEPROJECT")
 
-# clear data
-def clear_data():
-    return runCommand("rm -R dcm4che", "remove dcm4che")
-
 # install environment
 def install_environment():
     return runCommand("./integration_test/scripts/install-env.sh", "install environment exit with")
-
-# clone-dcm4che
-def clone_dcm4che():
-    return runCommand("git clone https://github.com/dcm4che/dcm4che.git dcm4che", "clone-dcm4che exit with")
-
-# checkout-dcm4che-tag
-def checkout_dcm4che_tag():
-    return runCommand("cd dcm4che && git checkout \"tags/5.31.2\"", "checkout-dcm4che-tag exit with")
-
-# build-tools
-def build_tools():
-    return runCommand("./integration_test/scripts/mvn-install-tools.sh", "build-tools exit with")
 
 # store-scp
 def store_scp(store_csp_run_step, store_scp_port):
